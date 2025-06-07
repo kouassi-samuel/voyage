@@ -7,7 +7,7 @@ import '../models/city_model.dart';
 
 class CityProvider with ChangeNotifier {
   List<City> _cities = [];
-  final String host = 'http://192.168.1.3';
+  final String host = 'http://192.168.1.6';
   bool isLoading = false;
 
   UnmodifiableListView<City> get cities => UnmodifiableListView(_cities);

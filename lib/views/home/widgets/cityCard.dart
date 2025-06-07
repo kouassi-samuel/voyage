@@ -4,10 +4,7 @@ import '../../../models/city_model.dart';
 class CityCard extends StatelessWidget {
   final City city;
 
-  const CityCard({
-    super.key,
-    required this.city,
-  });
+  const CityCard({super.key, required this.city});
 
   @override
   Widget build(BuildContext context) {
@@ -21,19 +18,19 @@ class CityCard extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            Ink.image(
-              fit: BoxFit.cover,
-              image: AssetImage(image),
-              child: InkWell(
-                onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    '/city',
-                    arguments: city.name,
-                  );
-                },
+            GestureDetector(
+              child: Hero(
+                tag: city.name!,
+                child: Image.asset(
+                  image,
+                  fit: BoxFit.cover,
+                ),
               ),
+              onTap: () {
+                Navigator.pushNamed(context, '/city', arguments: city.name);
+              },
             ),
+
             Positioned(
               top: 10,
               left: 10,

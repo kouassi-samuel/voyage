@@ -174,6 +174,7 @@ class _CityViewState extends State<CityView> with WidgetsBindingObserver {
               setDate: setDate,
               cityName: city.name,
               amount: amount,
+              cityImage: city.image,
             ),
             Expanded(
               child:

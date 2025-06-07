@@ -7,7 +7,7 @@ import '../models/trip_model.dart';
 import 'package:http/http.dart' as http;
 
 class TripProvider extends ChangeNotifier {
-  final String host = '192.168.1.3';
+  final String host = '192.168.1.6';
   List<Trip> _trips = [];
   bool isLoading = false;
 
