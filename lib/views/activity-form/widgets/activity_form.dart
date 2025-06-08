@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../models/activity_model.dart';
 import '../../../providers/city_provider.dart';
+import 'activity_form_image_picker.dart';
 
 class ActivityForm extends StatefulWidget {
   final String cityName;
@@ -13,6 +14,7 @@ class ActivityForm extends StatefulWidget {
 
 class _ActivityFormState extends State<ActivityForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _urlController = TextEditingController();
   late Activity newActivity;
   final double _formPadding = 20.0;
   final double _fieldSpacing = 15.0;
@@ -60,6 +62,11 @@ class _ActivityFormState extends State<ActivityForm> {
         SnackBar(content: Text('Erreur: ${e.toString()}')),
       );
     }
+  }
+  void updateUrlField(String url) {
+    setState(() {
+      _urlController.text = url;
+    });
   }
 
   @override
@@ -120,6 +127,7 @@ class _ActivityFormState extends State<ActivityForm> {
               // Champ Image URL
               TextFormField(
                 keyboardType: TextInputType.url,
+                controller: _urlController,
                 decoration: InputDecoration(
                   labelText: 'URL de l\'image',
                   border: OutlineInputBorder(),
@@ -132,6 +140,8 @@ class _ActivityFormState extends State<ActivityForm> {
                             : null,
                 onSaved: (value) => newActivity.image = value,
               ),
+              SizedBox(height: _fieldSpacing),
+              ActivityFormImagePicker(updateUrlField: updateUrlField),
               SizedBox(height: _fieldSpacing * 2),
 
               // Boutons
